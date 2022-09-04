@@ -8,3 +8,11 @@ This is a simple Go CLI application which shows how to use the Go SDK to access 
 In this example we simply output all registered routes.
 Fusio is an open source API management which helps to build and manage great APIs more information at:
 https://www.fusio-project.org/
+
+# Usage
+
+To run this app simply execute following command:
+
+```
+go run .
+```

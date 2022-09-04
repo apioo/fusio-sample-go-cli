@@ -20,7 +20,8 @@ func main() {
 		log.Panic(error)
 	}
 
+	fmt.Println("Routes:")
 	for _, v := range collection.Entry {
-		fmt.Println("Route: " + v.Path)
+		fmt.Println("* " + v.Path)
 	}
 }

@@ -1,0 +1,4 @@
+github.com/apioo/fusio-sdk-go v0.1.3 h1:pSiNFy86xQApUjIk1Qs0cPkBjCtTh31b9mO/GQnjvjI=
+github.com/apioo/fusio-sdk-go v0.1.3/go.mod h1:QD02VxaKP40neT3xWIbNCDfEyCmsfnwwSkjuqaPOlms=
+github.com/apioo/sdkgen-go v0.1.8 h1:2B/YLLGp8465i2wmPBaw39GwezFtyYsJZbEpj/P7EgA=
+github.com/apioo/sdkgen-go v0.1.8/go.mod h1:S0fw3foB73DKaffWRrhehaGaluMdl2RdQ03qI6shHJ4=

@@ -18,7 +18,7 @@ func main() {
 		log.Panic(err)
 	}
 
-	collection, err := backend.Operation().GetAll()
+	collection, err := backend.Operation().GetAll(0, 16, "")
 	if err != nil {
 		log.Panic(err)
 	}

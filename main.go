@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/apioo/fusio-sdk-go"
+	"github.com/apioo/fusio-sdk-go/v5/sdk"
 	"github.com/apioo/sdkgen-go"
 	"log"
 )
@@ -11,14 +11,18 @@ func main() {
 	var store = &sdkgen.MemoryTokenStore{}
 	var scopes = []string{"backend"}
 
-	var client = fusio.NewClient("https://demo.fusio-project.org", "test", "FRsNh1zKCXlB", store, scopes)
-
-	backend, err := client.Backend()
-	if err != nil {
-		log.Panic(err)
+	credentials := sdkgen.OAuth2{
+		ClientId:         "test",
+		ClientSecret:     "FRsNh1zKCXlB",
+		TokenUrl:         "https://demo.fusio-project.org/authorization/token",
+		AuthorizationUrl: "",
+		TokenStore:       store,
+		Scopes:           scopes,
 	}
 
-	collection, err := backend.Operation().GetAll(0, 16, "")
+	var client, _ = sdk.NewClient("https://demo.fusio-project.org", credentials)
+
+	collection, err := client.Backend().Operation().GetAll(0, 16, "")
 	if err != nil {
 		log.Panic(err)
 	}

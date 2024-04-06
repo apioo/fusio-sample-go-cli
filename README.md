@@ -13,32 +13,36 @@ https://www.fusio-project.org/
 package main
 
 import (
-    "fmt"
-    "github.com/apioo/fusio-sdk-go"
-    "github.com/apioo/sdkgen-go"
-    "log"
+	"fmt"
+	"github.com/apioo/fusio-sdk-go/v5/sdk"
+	"github.com/apioo/sdkgen-go"
+	"log"
 )
 
 func main() {
-    var store = &sdkgen.MemoryTokenStore{}
-    var scopes = []string{"backend"}
+	var store = &sdkgen.MemoryTokenStore{}
+	var scopes = []string{"backend"}
 
-    var client = fusio.NewClient("https://demo.fusio-project.org", "test", "FRsNh1zKCXlB", store, scopes)
+	credentials := sdkgen.OAuth2{
+		ClientId:         "test",
+		ClientSecret:     "FRsNh1zKCXlB",
+		TokenUrl:         "https://demo.fusio-project.org/authorization/token",
+		AuthorizationUrl: "",
+		TokenStore:       store,
+		Scopes:           scopes,
+	}
 
-    backend, err := client.Backend()
-    if err != nil {
-        log.Panic(err)
-    }
+	var client, _ = sdk.NewClient("https://demo.fusio-project.org", credentials)
 
-    collection, err := backend.Operation().GetAll(0, 16, "")
-    if err != nil {
-        log.Panic(err)
-    }
+	collection, err := client.Backend().Operation().GetAll(0, 16, "")
+	if err != nil {
+		log.Panic(err)
+	}
 
-    fmt.Println("Operations:")
-    for _, v := range collection.Entry {
-        fmt.Println("* " + v.HttpMethod + " " + v.HttpPath)
-    }
+	fmt.Println("Operations:")
+	for _, v := range collection.Entry {
+		fmt.Println("* " + v.HttpMethod + " " + v.HttpPath)
+	}
 }
 
 ```
